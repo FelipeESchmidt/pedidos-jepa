@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { onValue } from "firebase/database";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "../../Theme/index.theme";
-import { ordersDb } from "../../Utils/initFirebase";
 import { WholePage } from "../../Styles/GlobalStyles";
 import { OrdersContext } from "../../Contexts/OrdersContext";
+import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
+import { parseOrders } from "../../Utils/parseOrders";
 
 const App = () => {
-  const [orders, setOrders] = useState<Array<{ id: string }>>([]);
+  const ordersDb = useDatabaseRef("orders");
 
-  const handleOrdersChange = (newOrders: any) => {
-    if (!newOrders) {
-      return [];
-    }
-    if (Array.isArray(newOrders)) {
-      return newOrders;
-    }
-    return [newOrders];
-  };
+  const [orders, setOrders] = useState<Array<{ id: string }>>([]);
 
   useEffect(() => {
     onValue(ordersDb, (snapshot) => {
       const data = snapshot.val();
-      setOrders(handleOrdersChange(data));
+      setOrders(parseOrders(data));
     });
-  }, []);
+  }, [ordersDb]);
 
   console.log(orders);
 
