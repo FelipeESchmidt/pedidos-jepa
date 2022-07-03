@@ -6,22 +6,26 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/firebase": "^3.2.1",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/styled-components": "^5.1.25",
+    "firebase": "^9.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dotenv": "^0.1.3",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-dotenv && react-scripts start",
+    "build": "react-dotenv && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:watch": "react-dotenv && jest --watchAll"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +43,12 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "react-dotenv": {
+    "whitelist": [
+      "FIREBASE_PROJECT_ID",
+      "FIREBASE_API_KEY"
     ]
   }
 }
