@@ -1,10 +1,11 @@
+import { createOrder } from "../Controllers/ordersController";
 import { parseOrders } from "./parseOrders";
 
-const createTestOrder = () => ({ id: `ID-${Math.random()}` });
+const createTestOrder = () => createOrder(0);
 
 describe("parseOrders", () => {
   it("should return an empty array when there is no orders", () => {
-    const parsedOrders = parseOrders(null);
+    const parsedOrders = parseOrders([]);
 
     expect(parsedOrders).toEqual([]);
     expect(parsedOrders).toHaveLength(0);

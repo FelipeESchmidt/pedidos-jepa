@@ -1,9 +1,11 @@
-export const parseOrders = (orders: any) => {
+import { normalizeOrders, OrderProps } from "../Controllers/ordersController";
+
+export const parseOrders = (orders: Array<any> | any): Array<OrderProps> => {
   if (!orders) {
     return [];
   }
   if (Array.isArray(orders)) {
-    return orders;
+    return normalizeOrders(orders);
   }
-  return [orders];
+  return normalizeOrders([orders]);
 };
