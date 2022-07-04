@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 export const WholePage = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export default GlobalStyle;
