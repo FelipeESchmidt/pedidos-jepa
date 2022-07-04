@@ -40,6 +40,9 @@ export const createOrderItem = (
   return orderItem;
 };
 
+export const addItemToOrder = (order: OrderProps, item: OrderItemsProps) =>
+  order.items.push(item);
+
 const validateAvailability = (expirationDate: number) => {
   const currentTime = new Date().getTime();
   return expirationDate > currentTime;

@@ -1,4 +1,5 @@
 import {
+  addItemToOrder,
   createOrder,
   createOrderItem,
   normalizeOrders,
@@ -80,6 +81,25 @@ describe("ordersController", () => {
       const normalizedOrder = normalizeOrders([newOrder])[0];
 
       expect(normalizedOrder.items).toHaveLength(2);
+    });
+  });
+
+  describe("update orders", () => {
+    it("should add items inside order", () => {
+      const newOrder = createOrder(0);
+
+      const item1 = createOrderItem("Felipe", "Item1");
+      const item2 = createOrderItem("Outro", "Item2");
+
+      addItemToOrder(newOrder, item1);
+      expect(newOrder.items).toHaveLength(1);
+      expect(newOrder.items[0]).toHaveProperty("id");
+      expect(newOrder.items[0].name).toBe("Felipe");
+
+      addItemToOrder(newOrder, item2);
+      expect(newOrder.items).toHaveLength(2);
+      expect(newOrder.items[1]).toHaveProperty("id");
+      expect(newOrder.items[1].request).toBe("Item2");
     });
   });
 });
