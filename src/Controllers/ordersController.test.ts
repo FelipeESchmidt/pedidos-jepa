@@ -1,4 +1,8 @@
-import { createOrder, normalizeOrders } from "./ordersController";
+import {
+  createOrder,
+  createOrderItem,
+  normalizeOrders,
+} from "./ordersController";
 
 describe("ordersController", () => {
   describe("create new order", () => {
@@ -49,11 +53,33 @@ describe("ordersController", () => {
     it("should normalize and validate availability as false when expiration is in past", () => {
       const newOrder = createOrder(0);
 
-      newOrder.expirationDate = new Date(new Date().getTime() - 10);
+      newOrder.expirationDate = new Date().getTime() - 10;
 
       const normalizedOrder = normalizeOrders([newOrder])[0];
 
       expect(normalizedOrder.isAvailable).toBeFalsy();
+    });
+
+    it("should normalize order and have an empty order items list", () => {
+      const newOrder = createOrder(0);
+
+      const normalizedOrder = normalizeOrders([newOrder])[0];
+
+      expect(normalizedOrder.items).toEqual([]);
+      expect(normalizedOrder.items).toHaveLength(0);
+    });
+
+    it("should normalize order and have two order items inside list", () => {
+      const newOrder = createOrder(0);
+
+      newOrder.items = [
+        createOrderItem("Felipe", "Item"),
+        createOrderItem("Outro", "Item"),
+      ];
+
+      const normalizedOrder = normalizeOrders([newOrder])[0];
+
+      expect(normalizedOrder.items).toHaveLength(2);
     });
   });
 });

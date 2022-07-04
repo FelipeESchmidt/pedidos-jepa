@@ -13,7 +13,7 @@ describe("parseOrders", () => {
 
   it("should return an array with one order when there is just one order", () => {
     const myOrder = createTestOrder();
-    const parsedOrders = parseOrders(myOrder);
+    const parsedOrders = parseOrders([myOrder]);
 
     expect(parsedOrders).toEqual([myOrder]);
     expect(parsedOrders).toHaveLength(1);
