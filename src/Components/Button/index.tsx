@@ -3,7 +3,7 @@ import React from "react";
 import { StyledButton } from "./index.styles";
 
 interface ButtonProps {
-  children: JSX.Element;
+  children: JSX.Element | string;
   [k: string]: any;
 }
 
