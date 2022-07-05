@@ -1,26 +1,32 @@
 import React, { useContext } from "react";
-import { child, set } from "firebase/database";
-import { createOrder } from "../../Controllers/ordersController";
-import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
 import { OrdersContext } from "../../Contexts/OrdersContext";
+import NewOrderButton from "../NewOrderButton";
 
 import * as S from "./index.styles";
 
 function Orders() {
-  const ordersDb = useDatabaseRef("orders");
-  const orders = useContext(OrdersContext);
+  const currentTime = Date.now();
 
-  const handleClick = () => {
-    const newOrder = createOrder(0);
-    set(child(ordersDb.ref, newOrder.id), newOrder);
+  const orders = useContext(OrdersContext);
+  const visibleOrders = orders.filter(
+    (order) => order.expirationDate > currentTime
+  );
+
+  const createTitle = (): string => {
+    const l = visibleOrders.length;
+    const mainText = `${l} Pedidos Abertos`;
+    return l !== 1 ? mainText : mainText.replaceAll("s", "");
   };
 
   return (
     <S.StyledWrapper>
-      <button onClick={handleClick}>clique</button>
-      {orders.map((order) => (
+      <S.StyledTop>
+        <S.StyledTitle>{createTitle()}</S.StyledTitle>
+      </S.StyledTop>
+      {visibleOrders.map((order) => (
         <p style={{ color: "white" }}>{order.id}</p>
       ))}
+      <NewOrderButton ordersLength={visibleOrders.length} />
     </S.StyledWrapper>
   );
 }
