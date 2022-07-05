@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { OrdersContext } from "../../Contexts/OrdersContext";
 import NewOrderButton from "../NewOrderButton";
+import Order from "../Order";
 
 import * as S from "./index.styles";
 
@@ -24,7 +25,7 @@ function Orders() {
         <S.StyledTitle>{createTitle()}</S.StyledTitle>
       </S.StyledTop>
       {visibleOrders.map((order) => (
-        <p style={{ color: "white" }}>{order.id}</p>
+        <Order order={order} />
       ))}
       <NewOrderButton ordersLength={visibleOrders.length} />
     </S.StyledWrapper>
