@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { onValue } from "firebase/database";
 import { ThemeProvider } from "styled-components";
 
-import { theme } from "../../Theme/index.theme";
+import { theme } from "../../Theme";
 import { WholePage } from "../../Styles/GlobalStyles";
 import { OrdersContext } from "../../Contexts/OrdersContext";
 import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
