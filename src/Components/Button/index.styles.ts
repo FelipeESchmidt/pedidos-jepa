@@ -7,4 +7,10 @@ export const StyledButton = styled.button`
   outline: 0;
   background: none;
   box-shadow: 2px 4px 2px -2px black, inset 2px 2px 2px 0 black;
+  cursor: pointer;
+  :hover {
+    text-shadow: 1px 0 2px black;
+    box-shadow: 2px 4px 2px -2px black, inset 2px 2px 2px 0 black,
+      0 0 4px 0 black;
+  }
 `;
