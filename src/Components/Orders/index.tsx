@@ -13,6 +13,11 @@ function Orders() {
     (order) => order.expirationDate > currentTime
   );
 
+  const hasEmptyOrder = !visibleOrders.reduce(
+    (a, b) => (a &&= !!b.items.length),
+    true
+  );
+
   const createTitle = (): string => {
     const l = visibleOrders.length;
     const mainText = `${l} Pedidos Abertos`;
@@ -25,9 +30,11 @@ function Orders() {
         <S.StyledTitle>{createTitle()}</S.StyledTitle>
       </S.StyledTop>
       {visibleOrders.map((order) => (
-        <Order order={order} />
+        <Order key={order.id} order={order} />
       ))}
-      <NewOrderButton ordersLength={visibleOrders.length} />
+      {!hasEmptyOrder && visibleOrders.length < 3 && (
+        <NewOrderButton ordersLength={visibleOrders.length} />
+      )}
     </S.StyledWrapper>
   );
 }

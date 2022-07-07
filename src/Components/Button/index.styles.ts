@@ -12,5 +12,6 @@ export const StyledButton = styled.button`
     text-shadow: 1px 0 2px black;
     box-shadow: 2px 4px 2px -2px black, inset 2px 2px 2px 0 black,
       0 0 4px 0 black;
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;
