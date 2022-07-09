@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -20,12 +20,23 @@ export const StyledInfo = styled.div`
   justify-content: center;
 `;
 
-export const StyledPlaceTitle = styled.h2`
+export const StyledText = css`
   font-size: ${({ theme }) => theme.fontSizes.medium};
   color: ${({ theme }) => theme.colors.basic};
 `;
 
+export const StyledPlaceTitle = styled.h2`
+  ${StyledText};
+`;
+
 export const StyledContact = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.medium};
-  color: ${({ theme }) => theme.colors.basic};
+  ${StyledText};
+`;
+
+export const StyledLink = styled.a`
+  ${StyledText};
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `;

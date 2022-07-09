@@ -16,6 +16,9 @@ const Place = ({ place, showInfo = true }: PlaceComponentProps) => {
         <S.StyledInfo>
           <S.StyledPlaceTitle>{place.name}</S.StyledPlaceTitle>
           <S.StyledContact>{place.contact}</S.StyledContact>
+          <S.StyledLink href={place.menuLink} target="_blank">
+            Cardápio
+          </S.StyledLink>
         </S.StyledInfo>
       )}
     </S.StyledWrapper>

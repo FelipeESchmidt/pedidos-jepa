@@ -5,6 +5,7 @@ export interface PlaceProps {
   name: string;
   image: string;
   contact: string;
+  menuLink: string;
 }
 
 const undefinedPlace: PlaceProps = {
@@ -12,17 +13,20 @@ const undefinedPlace: PlaceProps = {
   name: "Não encontrado",
   image: "https://www.freeiconspng.com/thumbs/x-png/x-png-33.png",
   contact: "(XX) X XXXX-XXXX",
+  menuLink: "",
 };
 
 export const createPlace = (
   name: string,
   imageSrc: string,
-  contact: string
+  contact: string,
+  menuLink: string
 ): PlaceProps => {
   const place: PlaceProps = {
     id: generateId(16),
     name,
     contact,
+    menuLink,
     image: imageSrc,
   };
   return place;
@@ -33,6 +37,7 @@ const normalizePlace = (order: any): PlaceProps => ({
   name: order.name,
   image: order.image,
   contact: order.contact,
+  menuLink: order.menuLink,
 });
 
 export const normalizePlaces = (places: Array<any>): Array<PlaceProps> =>
