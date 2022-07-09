@@ -1,7 +1,7 @@
 import { createOrder } from "../Controllers/ordersController";
 import { parseOrders } from "./parseOrders";
 
-const createTestOrder = () => createOrder(0);
+const createTestOrder = () => createOrder("0");
 
 describe("parseOrders", () => {
   it("should return an empty array when there is no orders", () => {

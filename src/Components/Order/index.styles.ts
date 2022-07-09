@@ -1,15 +1,11 @@
 import styled from "styled-components";
+import { Card } from "../../Styles/GlobalStyles";
 import Button from "../Button";
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled(Card)`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.basic};
-  box-shadow: 2px 2px 0 0 ${({ theme }) => theme.colors.basic};
-  border-radius: 10px;
-  box-sizing: border-box;
 `;
 
 export const StyledNewItemButton = styled(Button)`

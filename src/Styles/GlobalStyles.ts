@@ -19,4 +19,12 @@ export const WholePage = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
+export const Card = styled.div`
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.basic};
+  box-shadow: 2px 2px 0 0 ${({ theme }) => theme.colors.basic};
+  border-radius: 10px;
+  box-sizing: border-box;
+`;
+
 export default GlobalStyle;
