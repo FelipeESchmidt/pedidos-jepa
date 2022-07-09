@@ -99,32 +99,3 @@ export const FormButton = styled(Button)<{ enable: boolean }>`
     background-color: rgba(0, 0, 0, 0);
   }
 `;
-
-export const CloseButton = styled.i`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  :after {
-    content: "";
-    display: block;
-    width: 2px;
-    height: 12px;
-    background-color: ${({ theme }) => theme.colors.secondary};
-    transform-origin: top left;
-    transform: rotate(-45deg) translateY(2px);
-  }
-  :before {
-    content: "";
-    display: block;
-    width: 12px;
-    height: 2px;
-    background-color: ${({ theme }) => theme.colors.secondary};
-    transform-origin: top right;
-    transform: rotate(-45deg) translateX(-3px);
-  }
-  :hover {
-    background: ${({ theme }) =>
-      `radial-gradient(circle, ${theme.colors.secondary} 0%, ${theme.colors.background} 55%)`};
-  }
-`;

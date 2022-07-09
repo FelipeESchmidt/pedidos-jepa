@@ -25,3 +25,13 @@ export const StyledSelectButton = styled(Button)`
   color: ${({ theme }) => theme.colors.secondary};
   border: 3px solid ${({ theme }) => theme.colors.secondary};
 `;
+
+export const StyledWrapperTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const StyledTitle = styled.h2`
+  font-size: ${({ theme }) => theme.fontSizes.big};
+  color: ${({ theme }) => theme.colors.basic};
+`;
