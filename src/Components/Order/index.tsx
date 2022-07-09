@@ -1,12 +1,15 @@
 import { child, set } from "firebase/database";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
+import { PlacesContext } from "../../Contexts/PlacesContext";
 import { OrderProps } from "../../Controllers/ordersController";
+import { getPlaceById } from "../../Controllers/placesController";
 import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
 import { generateId } from "../../Utils/idGenerator";
 
 import Form from "../Form";
 import OrderItems from "../OrderItems";
+import Place from "../Place";
 
 import * as S from "./index.styles";
 
@@ -17,6 +20,8 @@ interface OrderComponentProps {
 type OrderMode = "list" | "form";
 
 const Order = ({ order }: OrderComponentProps) => {
+  const places = useContext(PlacesContext);
+  const orderPlace = getPlaceById(places, order.placeId);
   const orderItemsDb = useDatabaseRef(`orders/${order.id}/items`);
 
   const [mode, setMode] = useState<OrderMode>("list");
@@ -38,6 +43,7 @@ const Order = ({ order }: OrderComponentProps) => {
 
   const renderList = () => (
     <>
+      <Place place={orderPlace} />
       <OrderItems orderItems={order.items} />
       <S.StyledNewItemButton onClick={handleNewItem}>
         + Novo item

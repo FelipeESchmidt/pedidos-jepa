@@ -1,6 +1,5 @@
 import React from "react";
 import { OrderItemsProps } from "../../Controllers/ordersController";
-import Place from "../Place";
 
 import * as S from "./index.styles";
 
@@ -11,7 +10,7 @@ interface OrderItemsComponentProps {
 const OrderItems = ({ orderItems }: OrderItemsComponentProps) => {
   const createTitle = (): string => {
     const l = orderItems.length;
-    if (!l) return "Pedido vazio. Adicione um item";
+    if (!l) return "Pedido vazio";
     const mainText = `${l} Itens no pedido:`;
     return l !== 1 ? mainText : mainText.replace("ns", "m");
   };
@@ -26,7 +25,6 @@ const OrderItems = ({ orderItems }: OrderItemsComponentProps) => {
 
   return (
     <S.StyledWrapper>
-      <Place />
       <S.StyledTitle>{createTitle()}</S.StyledTitle>
       {orderItems.map((orderItem) => renderItem(orderItem))}
     </S.StyledWrapper>
