@@ -6,6 +6,7 @@ import { OrderProps } from "../../Controllers/ordersController";
 import { getPlaceById } from "../../Controllers/placesController";
 import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
 import { generateId } from "../../Utils/idGenerator";
+import { parseDateToLocale } from "../../Utils/parseDates";
 
 import Form from "../Form";
 import OrderItems from "../OrderItems";
@@ -41,13 +42,16 @@ const Order = ({ order }: OrderComponentProps) => {
     set(child(orderItemsDb, newItem.id), newItem);
   };
 
-  const renderList = () => (
+  const renderOrderDetails = () => (
     <>
       <Place place={orderPlace} />
       <OrderItems orderItems={order.items} />
       <S.StyledNewItemButton onClick={handleNewItem}>
         + Novo item
       </S.StyledNewItemButton>
+      <S.StyledExpiration>
+        {parseDateToLocale(order.expirationDate, "Expira às")}
+      </S.StyledExpiration>
     </>
   );
 
@@ -58,7 +62,7 @@ const Order = ({ order }: OrderComponentProps) => {
   const renderByMode = () => {
     const modeRenders: { [k in OrderMode]: Function } = {
       form: renderForm,
-      list: renderList,
+      list: renderOrderDetails,
     };
     return modeRenders[mode]();
   };

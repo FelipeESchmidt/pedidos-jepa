@@ -14,3 +14,11 @@ export const StyledNewItemButton = styled(Button)`
   color: ${({ theme }) => theme.colors.secondary};
   border: 2px solid ${({ theme }) => theme.colors.secondary};
 `;
+
+export const StyledExpiration = styled.p`
+  margin-top: 20px;
+  font-family: monospace;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  color: ${({ theme }) => theme.colors.basic};
+  text-align: right;
+`;
