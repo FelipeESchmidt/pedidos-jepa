@@ -1,9 +1,12 @@
 import { child, set } from "firebase/database";
 import React, { useState } from "react";
+
 import { OrderProps } from "../../Controllers/ordersController";
 import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
 import { generateId } from "../../Utils/idGenerator";
+
 import Form from "../Form";
+import OrderItems from "../OrderItems";
 
 import * as S from "./index.styles";
 
@@ -35,17 +38,7 @@ const Order = ({ order }: OrderComponentProps) => {
 
   const renderList = () => (
     <>
-      {order.items.map((orderItem) => (
-        <div
-          key={orderItem.id}
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <p style={{ fontSize: "25px", color: "white" }}>{orderItem.name}</p>
-          <p style={{ fontSize: "25px", color: "white" }}>
-            {orderItem.request}
-          </p>
-        </div>
-      ))}
+      <OrderItems orderItems={order.items} />
       <S.StyledNewItemButton onClick={handleNewItem}>
         + Novo item
       </S.StyledNewItemButton>
