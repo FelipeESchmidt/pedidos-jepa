@@ -6,6 +6,7 @@ export const StyledWrapper = styled.div`
   grid-template-columns: 1fr;
   gap: 20px;
   padding: 0 5%;
+  padding-bottom: 20px;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.background};
 `;
