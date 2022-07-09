@@ -8,7 +8,7 @@ import {
 describe("ordersController", () => {
   describe("create new order", () => {
     it("should create an order with basic props", () => {
-      const placeId = 0;
+      const placeId = "0";
       const newOrder = createOrder(placeId);
 
       expect(newOrder).toHaveProperty("id");
@@ -20,13 +20,13 @@ describe("ordersController", () => {
     });
 
     it("should create an order with a 16HEX", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       expect(newOrder.id).toHaveLength(16);
     });
 
     it("should create an order with a future date as expiration", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       const expirationDate = new Date(newOrder.expirationDate).getTime();
       const currentDate = new Date().getTime();
@@ -35,7 +35,7 @@ describe("ordersController", () => {
     });
 
     it("should create an order with a list of items", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       expect(newOrder).toHaveProperty("items");
       expect(newOrder.items).toHaveLength(0);
@@ -44,7 +44,7 @@ describe("ordersController", () => {
 
   describe("normalize orders", () => {
     it("should normalize and validate availability as true when expiration is in future", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       const normalizedOrder = normalizeOrders([newOrder])[0];
 
@@ -52,7 +52,7 @@ describe("ordersController", () => {
     });
 
     it("should normalize and validate availability as false when expiration is in past", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       newOrder.expirationDate = new Date().getTime() - 10;
 
@@ -62,7 +62,7 @@ describe("ordersController", () => {
     });
 
     it("should normalize order and have an empty order items list", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       const normalizedOrder = normalizeOrders([newOrder])[0];
 
@@ -71,7 +71,7 @@ describe("ordersController", () => {
     });
 
     it("should normalize order and have two order items inside list", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       newOrder.items = [
         createOrderItem("Felipe", "Item"),
@@ -86,7 +86,7 @@ describe("ordersController", () => {
 
   describe("update orders", () => {
     it("should add items inside order", () => {
-      const newOrder = createOrder(0);
+      const newOrder = createOrder("0");
 
       const item1 = createOrderItem("Felipe", "Item1");
       const item2 = createOrderItem("Outro", "Item2");

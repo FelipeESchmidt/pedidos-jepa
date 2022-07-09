@@ -7,7 +7,7 @@ export interface OrderProps {
   id: string;
   expirationDate: number;
   items: Array<OrderItemsProps>;
-  placeId: number;
+  placeId: string;
   isAvailable: boolean;
 }
 
@@ -17,7 +17,7 @@ export interface OrderItemsProps {
   request: string;
 }
 
-export const createOrder = (placeId: number): OrderProps => {
+export const createOrder = (placeId: string): OrderProps => {
   const order: OrderProps = {
     id: generateId(16),
     expirationDate: new Date().getTime() + twoHoursInMilliseconds,
