@@ -20,6 +20,7 @@ const NewOrderButton = ({ ordersLength }: NewOrderButtonProps) => {
   const [mode, setMode] = useState<NewOrderMode>("button");
 
   const handleClick = () => setMode("places");
+  const handleClose = () => setMode("button");
 
   const handleCreate = (placeId: string) => {
     const newOrder = createOrder(placeId);
@@ -41,7 +42,9 @@ const NewOrderButton = ({ ordersLength }: NewOrderButtonProps) => {
   const renderButtonMode = () =>
     smallButton ? renderSmallButton() : renderBigButton();
 
-  const renderPlaces = () => <Places handleSelect={handleCreate} />;
+  const renderPlaces = () => (
+    <Places handleSelect={handleCreate} handleClose={handleClose} />
+  );
 
   const renderByMode = () => {
     const modeRenders: { [k in NewOrderMode]: Function } = {

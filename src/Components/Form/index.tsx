@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CloseButton } from "../../Styles/GlobalStyles";
 import {
   FormProps,
   inputs,
@@ -42,7 +43,7 @@ function Form({ onSubmit, onClose }: FormProps) {
 
   return (
     <S.StyledContainer>
-      <S.CloseButton onClick={() => onClose()} />
+      <CloseButton onClick={() => onClose()} />
       {inputs.map((input) => (
         <S.InputContainer key={input.label}>
           <S.Label top={tops[input.name]} htmlFor={input.props.id}>
