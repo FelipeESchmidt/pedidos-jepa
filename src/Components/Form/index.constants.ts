@@ -16,7 +16,7 @@ export interface FormProps {
 export const inputs: Array<InputProps> = [
   {
     component: Input,
-    label: "Name",
+    label: "Nome",
     name: "name",
     props: { type: "text", id: "name", name: "name" },
   },

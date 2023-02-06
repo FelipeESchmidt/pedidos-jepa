@@ -43,7 +43,9 @@ function Form({ onSubmit, onClose }: FormProps) {
 
   return (
     <S.StyledContainer>
-      <CloseButton onClick={() => onClose()} />
+      <S.StyledCloseWrapper>
+        <CloseButton onClick={() => onClose()} />
+      </S.StyledCloseWrapper>
       {inputs.map((input) => (
         <S.InputContainer key={input.label}>
           <S.Label top={tops[input.name]} htmlFor={input.props.id}>

@@ -12,9 +12,12 @@ export const StyledContainer = styled.form`
   position: relative;
   flex-direction: column;
   gap: 25px;
-  padding: 40px 20px;
-  padding-top: 60px;
+  padding: 20px 20px;
   align-items: center;
+`;
+
+export const StyledCloseWrapper = styled.div`
+  margin-left: auto;
 `;
 
 export const InputContainer = styled.div`

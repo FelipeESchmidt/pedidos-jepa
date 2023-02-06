@@ -10,7 +10,24 @@ export const StyledTitle = styled.h2`
   text-decoration: underline;
 `;
 
-export const StyledItem = styled.p`
+export const StyledItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+export const StyledItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  svg {
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: 16px;
+    cursor: pointer;
+  }
+`;
+
+export const StyledItemText = styled.p`
   font-family: "Courier New", Courier, monospace;
   font-size: ${({ theme }) => theme.fontSizes.small};
   color: white;

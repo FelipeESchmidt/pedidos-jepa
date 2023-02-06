@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { IoCopy } from "react-icons/io5";
+
 import { Card } from "../../Styles/GlobalStyles";
 import Button from "../Button";
 
@@ -21,4 +23,20 @@ export const StyledExpiration = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.small};
   color: ${({ theme }) => theme.colors.basic};
   text-align: right;
+`;
+
+export const StyledTopButtons = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+`;
+
+export const StyledCopyIcon = styled(IoCopy)`
+  font-size: 20px;
+  color: white;
+  transition: 0.5s;
+  cursor: pointer;
+  :hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
