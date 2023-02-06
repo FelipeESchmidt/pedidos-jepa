@@ -22,3 +22,7 @@ export const StyledExpiration = styled.p`
   color: ${({ theme }) => theme.colors.basic};
   text-align: right;
 `;
+
+export const StyledRemoveOrder = styled.div`
+  margin-left: auto;
+`;
