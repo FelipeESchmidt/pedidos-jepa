@@ -8,6 +8,7 @@ import {
 } from "../../Controllers/ordersController";
 import { getPlaceById } from "../../Controllers/placesController";
 import { useDatabaseRef } from "../../Hooks/useDatabaseRef";
+import { useCopyOrder } from "../../Hooks/useCopyOrder";
 import { usePassword } from "../../Hooks/usePassword";
 import { CloseButton } from "../../Styles/GlobalStyles";
 import { generateId } from "../../Utils/idGenerator";
@@ -31,6 +32,7 @@ const Order = ({ order }: OrderComponentProps) => {
   const orderDb = useDatabaseRef("orders");
   const orderItemsDb = useDatabaseRef(`orders/${order.id}/items`);
   const { confirmPassword } = usePassword();
+  const { copyOrderToClipboard } = useCopyOrder();
 
   const [mode, setMode] = useState<OrderMode>("list");
 
@@ -63,9 +65,10 @@ const Order = ({ order }: OrderComponentProps) => {
 
   const renderOrderDetails = () => (
     <>
-      <S.StyledRemoveOrder>
+      <S.StyledTopButtons>
         <CloseButton onClick={handleRemoveOrder} />
-      </S.StyledRemoveOrder>
+        <S.StyledCopyIcon onClick={() => copyOrderToClipboard(order)} />
+      </S.StyledTopButtons>
       <Place place={orderPlace} />
       <OrderItems orderItems={order.items} onRemoveItem={handleRemoveItem} />
       <S.StyledNewItemButton onClick={handleNewItem}>
