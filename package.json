@@ -49,7 +49,8 @@
   "react-dotenv": {
     "whitelist": [
       "FIREBASE_PROJECT_ID",
-      "FIREBASE_API_KEY"
+      "FIREBASE_API_KEY",
+      "ADM_PASSWORD"
     ]
   }
 }
