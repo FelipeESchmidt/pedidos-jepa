@@ -67,7 +67,7 @@ const Order = ({ order }: OrderComponentProps) => {
         <CloseButton onClick={handleRemoveOrder} />
       </S.StyledRemoveOrder>
       <Place place={orderPlace} />
-      <OrderItems orderItems={order.items} />
+      <OrderItems orderItems={order.items} onRemoveItem={handleRemoveItem} />
       <S.StyledNewItemButton onClick={handleNewItem}>
         + Novo item
       </S.StyledNewItemButton>

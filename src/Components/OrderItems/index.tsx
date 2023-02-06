@@ -1,13 +1,15 @@
 import React from "react";
 import { OrderItemsProps } from "../../Controllers/ordersController";
+import { BiTrash } from "react-icons/bi";
 
 import * as S from "./index.styles";
 
 interface OrderItemsComponentProps {
   orderItems: Array<OrderItemsProps>;
+  onRemoveItem(item: OrderItemsProps): void;
 }
 
-const OrderItems = ({ orderItems }: OrderItemsComponentProps) => {
+const OrderItems = ({ orderItems, onRemoveItem }: OrderItemsComponentProps) => {
   const createTitle = (): string => {
     const l = orderItems.length;
     if (!l) return "Pedido vazio";
@@ -16,17 +18,20 @@ const OrderItems = ({ orderItems }: OrderItemsComponentProps) => {
   };
 
   const renderItem = (item: OrderItemsProps) => (
-    <div key={item.id}>
-      <S.StyledItem>
+    <S.StyledItem key={item.id}>
+      <S.StyledItemText>
         <S.Name>{item.name}</S.Name>: {item.request}
-      </S.StyledItem>
-    </div>
+      </S.StyledItemText>
+      <BiTrash onClick={() => onRemoveItem(item)} />
+    </S.StyledItem>
   );
 
   return (
     <S.StyledWrapper>
       <S.StyledTitle>{createTitle()}</S.StyledTitle>
-      {orderItems.map((orderItem) => renderItem(orderItem))}
+      <S.StyledItems>
+        {orderItems.map((orderItem) => renderItem(orderItem))}
+      </S.StyledItems>
     </S.StyledWrapper>
   );
 };
