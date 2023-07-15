@@ -67,6 +67,10 @@ const Order = ({ order }: OrderComponentProps) => {
   const handleCreateItem = (values: { [k: string]: string }) => {
     closeForm();
 
+    if (orderToEdit) {
+      remove(child(orderItemsDb, orderToEdit.id));
+    }
+
     const newItem = { ...values, id: generateId(8) };
     set(child(orderItemsDb, newItem.id), newItem);
   };
@@ -95,7 +99,11 @@ const Order = ({ order }: OrderComponentProps) => {
   );
 
   const renderForm = () => (
-    <Form onSubmit={handleCreateItem} onClose={closeForm} />
+    <Form
+      onSubmit={handleCreateItem}
+      onClose={closeForm}
+      editOrder={orderToEdit}
+    />
   );
 
   const renderByMode = () => {
