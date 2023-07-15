@@ -20,11 +20,6 @@ export const StyledItems = styled.div`
 export const StyledItem = styled.div`
   display: flex;
   justify-content: space-between;
-  svg {
-    color: ${({ theme }) => theme.colors.secondary};
-    font-size: 16px;
-    cursor: pointer;
-  }
 `;
 
 export const StyledItemText = styled.p`
@@ -35,4 +30,19 @@ export const StyledItemText = styled.p`
 
 export const Name = styled.span`
   text-decoration: underline;
+`;
+
+export const StyledIcons = styled.div`
+  display: flex;
+  gap: 12px;
+  svg[data-edit="true"] {
+    color: ${({ theme }) => theme.colors.basic};
+    font-size: 16px;
+    cursor: pointer;
+  }
+  svg[data-remove="true"] {
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: 16px;
+    cursor: pointer;
+  }
 `;

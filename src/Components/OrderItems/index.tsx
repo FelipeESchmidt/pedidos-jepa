@@ -1,15 +1,21 @@
 import React from "react";
 import { OrderItemsProps } from "../../Controllers/ordersController";
 import { BiTrash } from "react-icons/bi";
+import { FiEdit2 } from "react-icons/fi";
 
 import * as S from "./index.styles";
 
 interface OrderItemsComponentProps {
   orderItems: Array<OrderItemsProps>;
   onRemoveItem(item: OrderItemsProps): void;
+  onEditItem(item: OrderItemsProps): void;
 }
 
-const OrderItems = ({ orderItems, onRemoveItem }: OrderItemsComponentProps) => {
+const OrderItems = ({
+  orderItems,
+  onRemoveItem,
+  onEditItem,
+}: OrderItemsComponentProps) => {
   const createTitle = (): string => {
     const l = orderItems.length;
     if (!l) return "Pedido vazio";
@@ -22,7 +28,10 @@ const OrderItems = ({ orderItems, onRemoveItem }: OrderItemsComponentProps) => {
       <S.StyledItemText>
         <S.Name>{item.name}</S.Name>: {item.request}
       </S.StyledItemText>
-      <BiTrash onClick={() => onRemoveItem(item)} />
+      <S.StyledIcons>
+        <FiEdit2 data-edit onClick={() => onEditItem(item)} />
+        <BiTrash data-remove onClick={() => onRemoveItem(item)} />
+      </S.StyledIcons>
     </S.StyledItem>
   );
 

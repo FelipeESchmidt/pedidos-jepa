@@ -3,13 +3,14 @@ import { CloseButton } from "../../Styles/GlobalStyles";
 import {
   FormProps,
   inputs,
+  setValuesBy,
   startTopsState,
   startValuesState,
 } from "./index.constants";
 
 import * as S from "./index.styles";
 
-function Form({ onSubmit, onClose }: FormProps) {
+function Form({ onSubmit, onClose, editOrder }: FormProps) {
   const [tops, setTops] = React.useState(startTopsState());
   const [values, setValues] = React.useState(startValuesState());
 
@@ -40,6 +41,12 @@ function Form({ onSubmit, onClose }: FormProps) {
     setValues(startValuesState());
     onSubmit(payload);
   };
+
+  React.useEffect(() => {
+    if (!editOrder) return;
+    setValues(setValuesBy(editOrder));
+    setTops(startTopsState(true));
+  }, [editOrder]);
 
   return (
     <S.StyledContainer>

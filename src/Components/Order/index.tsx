@@ -35,17 +35,25 @@ const Order = ({ order }: OrderComponentProps) => {
   const { copyOrderToClipboard } = useCopyOrder();
 
   const [mode, setMode] = useState<OrderMode>("list");
+  const [orderToEdit, setOrderToEdit] = useState<OrderItemsProps>();
 
   const handleNewItem = () => {
+    clearEdit();
     setMode("form");
   };
 
   const closeForm = () => {
+    clearEdit();
     setMode("list");
   };
 
   const handleRemoveOrder = () => {
     if (confirmPassword()) remove(child(orderDb, order.id));
+  };
+
+  const handleEditItem = (orderItem: OrderItemsProps) => {
+    setMode("form");
+    setOrderToEdit(orderItem);
   };
 
   const handleRemoveItem = (orderItem: OrderItemsProps) => {
@@ -59,9 +67,15 @@ const Order = ({ order }: OrderComponentProps) => {
   const handleCreateItem = (values: { [k: string]: string }) => {
     closeForm();
 
+    if (orderToEdit) {
+      remove(child(orderItemsDb, orderToEdit.id));
+    }
+
     const newItem = { ...values, id: generateId(8) };
     set(child(orderItemsDb, newItem.id), newItem);
   };
+
+  const clearEdit = () => setOrderToEdit(undefined);
 
   const renderOrderDetails = () => (
     <>
@@ -70,7 +84,11 @@ const Order = ({ order }: OrderComponentProps) => {
         <S.StyledCopyIcon onClick={() => copyOrderToClipboard(order)} />
       </S.StyledTopButtons>
       <Place place={orderPlace} />
-      <OrderItems orderItems={order.items} onRemoveItem={handleRemoveItem} />
+      <OrderItems
+        orderItems={order.items}
+        onRemoveItem={handleRemoveItem}
+        onEditItem={handleEditItem}
+      />
       <S.StyledNewItemButton onClick={handleNewItem}>
         + Novo item
       </S.StyledNewItemButton>
@@ -81,7 +99,11 @@ const Order = ({ order }: OrderComponentProps) => {
   );
 
   const renderForm = () => (
-    <Form onSubmit={handleCreateItem} onClose={closeForm} />
+    <Form
+      onSubmit={handleCreateItem}
+      onClose={closeForm}
+      editOrder={orderToEdit}
+    />
   );
 
   const renderByMode = () => {
